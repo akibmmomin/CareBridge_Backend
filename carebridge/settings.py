@@ -17,7 +17,7 @@ CSRF_TRUSTED_ORIGINS = [
 INSTALLED_APPS = ["django.contrib.admin","django.contrib.auth","django.contrib.contenttypes",
     "django.contrib.sessions","django.contrib.messages","django.contrib.staticfiles",
     "rest_framework","rest_framework.authtoken","corsheaders","core"]
-MIDDLEWARE = ["django.middleware.security.SecurityMiddleware","corsheaders.middleware.CorsMiddleware","django.contrib.sessions.middleware.SessionMiddleware",
+MIDDLEWARE = ["django.middleware.security.SecurityMiddleware","whitenoise.middleware.WhiteNoiseMiddleware","corsheaders.middleware.CorsMiddleware","django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware","django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware","django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware"]
@@ -59,7 +59,13 @@ AUTH_USER_MODEL = "core.User"
 AUTH_PASSWORD_VALIDATORS = [{"NAME":"django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME":"django.contrib.auth.password_validation.CommonPasswordValidator"}]
 LOGIN_URL = "/login/"; LOGIN_REDIRECT_URL = "/dashboard/"; LOGOUT_REDIRECT_URL = "/"
-STATIC_URL = "/static/"; MEDIA_URL = "/media/"; MEDIA_ROOT = BASE_DIR / "media"
+
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 TIME_ZONE = "Asia/Kolkata"; USE_TZ = True
 SESSION_COOKIE_HTTPONLY = True
